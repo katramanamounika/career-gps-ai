@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from database.mongodb import db
 from models.user import User
 from database.mongodb import users_collection
 from pydantic import BaseModel
@@ -46,6 +47,36 @@ def login(data: LoginRequest):
         }
 
     return {
-        "message": "Login successful",
-        "name": user["name"]
+        "message":"Login successful",
+        "name": user["name"],
+        "email": user["email"],
+        "college": user["college"],
+        "graduation_year": user["graduation_year"]
+    }
+@router.post("/forgot-password")
+async def forgot_password(data: dict):
+
+    email = data["email"]
+    new_password = data["new_password"]
+
+    user = db.users.find_one({
+        "email": email
+    })
+
+    if not user:
+        return {
+            "message": "User not found"
+        }
+
+    db.users.update_one(
+        {"email": email},
+        {
+            "$set": {
+                "password": new_password
+            }
+        }
+    )
+
+    return {
+        "message": "Password updated successfully"
     }

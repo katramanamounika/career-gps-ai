@@ -8,7 +8,7 @@ client = MongoClient(
     os.getenv("MONGO_URI")
 )
 
-db = client["careergps"]
+db = client["career_gps_ai"]
 
 users_collection = db["users"]
 
