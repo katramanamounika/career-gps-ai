@@ -44,34 +44,40 @@ function SignupPage() {
         formData
       );
 
-      alert(
-        response.data.message
-      );
-
       if(
-      response.data.message
-      ===
+      response.data.message !==
       "Signup successful"
       ){
 
+      alert(
+      response.data.message
+      );
+
+      return;
+
+      }
+
+      alert(
+      "Signup Successful"
+      );
+
       localStorage.setItem(
-        "user",
-        JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          college: formData.college,
-          graduation_year:
-            formData.graduation_year
-        })
+      "user",
+      JSON.stringify({
+      name:
+      formData.name,
+      email:
+      formData.email,
+      college:
+      formData.college,
+      graduation_year:
+      formData.graduation_year
+      })
       );
 
       navigate(
       "/login"
       );
-
-      } {
-        navigate("/login");
-      }
 
     } catch (error) {
 

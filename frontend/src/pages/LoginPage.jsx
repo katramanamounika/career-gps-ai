@@ -32,22 +32,37 @@ function LoginPage() {
         loginData
       );
 
-      if (response.data.message === "Login successful") {
+      if(
+      response.data.message !==
+      "Login successful"
+      ){
 
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: response.data.name,
-            email: response.data.email,
-            college: response.data.college,
-            graduation_year: response.data.graduation_year
-          })
-        );
+      alert(
+      response.data.message
+      );
 
-        navigate("/dashboard");
+      return;
+
       }
+
+      localStorage.setItem(
+      "user",
+      JSON.stringify({
+      name: response.data.name,
+      email: response.data.email,
+      college: response.data.college,
+      graduation_year:
+      response.data.graduation_year
+      })
+      );
+
+      navigate("/dashboard");
     }catch(error){
-      alert("Login Failed");
+      alert(
+      error?.response?.data?.message
+      ||
+      "Login Failed"
+      );
     }
   };
 
