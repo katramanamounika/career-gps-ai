@@ -44,6 +44,9 @@ def calculate_match(career, skills):
 
     return {
         "score": score,
+        "ats_score": score,
         "matched_skills": matched,
-        "missing_skills": missing_skills
+        "missing_skills": missing_skills,
+        "total_required_skills": len(required_skills),
+        "total_matched_skills": len(matched)
     }

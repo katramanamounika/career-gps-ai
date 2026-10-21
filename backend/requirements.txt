@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pypdf
+pydantic
+pymongo
+python-multipart

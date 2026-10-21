@@ -6,6 +6,7 @@ from routes.career import router as career_router
 from routes.roadmap import router as roadmap_router
 from routes.projects import router as projects_router
 from routes.readiness import router as readiness_router
+from routes.advanced import router as advanced_router
 
 app = FastAPI()
 app.include_router(auth_router)
@@ -14,6 +15,7 @@ app.include_router(resume_router)
 app.include_router(roadmap_router)
 app.include_router(projects_router)
 app.include_router(readiness_router)
+app.include_router(advanced_router)
 
 app.add_middleware(
     CORSMiddleware,

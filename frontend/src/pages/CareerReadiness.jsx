@@ -22,7 +22,25 @@ function CareerReadiness() {
   const [missingSkills, setMissingSkills] =
     useState([]);
   const navigate= useNavigate();
+  const [resumeName, setResumeName] = useState("");
+  const [atsScore, setAtsScore] = useState(0);
+  const [analysisReport, setAnalysisReport] = useState(null);
   useEffect(() => {
+    setResumeName(
+      localStorage.getItem("uploadedResume") || "Resume.pdf"
+    );
+
+    const savedProfile = JSON.parse(
+      localStorage.getItem("resumeProfileAnalysis") || "{}"
+    );
+
+    setAtsScore(savedProfile.ats_score || 0);
+
+    setAnalysisReport(
+      JSON.parse(
+        localStorage.getItem("analysisReport") || "null"
+      )
+    );
 
     setCareer(
       localStorage.getItem(
@@ -56,7 +74,10 @@ function CareerReadiness() {
 
   }, []);
 
-  const futureScore = 100;
+  const futureScore = Math.min(
+    100,
+    currentScore + missingSkills.length * 10
+  );
 
   return (
 
@@ -111,7 +132,7 @@ function CareerReadiness() {
           <div className="glass-card">
 
             <h2>
-              Future Potential
+              Potential After Completing Roadmap
             </h2>
 
             <br />
@@ -270,6 +291,57 @@ function CareerReadiness() {
           <h2>
             🎉 Congratulations
           </h2>
+          <div className="glass-card">
+
+            <h2 className="section-title">
+              Previously Uploaded Resume Analysis
+            </h2>
+
+            <br />
+
+            <p className="subtitle">
+              📄 Resume: {resumeName}
+            </p>
+
+            <p className="subtitle">
+              📊 ATS-style score: {atsScore}%
+            </p>
+
+            <p className="subtitle">
+              🎯 Career: {analysisReport?.career || career}
+            </p>
+
+            <p className="subtitle">
+              🚀 Career match score: {analysisReport?.score || currentScore}%
+            </p>
+
+            <br />
+
+            <h3>Matched Skills</h3>
+
+            <div className="skills-wrap">
+              {matchedSkills.map((skill) => (
+                <span key={skill} className="skill-chip">
+                  ✓ {skill}
+                </span>
+              ))}
+            </div>
+
+            <br />
+
+            <h3>Skills to Improve</h3>
+
+            <div className="skills-wrap">
+              {missingSkills.map((skill) => (
+                <span key={skill} className="missing-chip">
+                  ✕ {skill}
+                </span>
+              ))}
+            </div>
+
+          </div>
+
+          <br />
 
           <br />
 

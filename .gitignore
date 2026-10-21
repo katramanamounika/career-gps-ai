@@ -1,0 +1,25 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and production builds
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Python virtual environments and generated files
+venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+
+# Local data and user uploads
+backend/data/
+backend/uploads/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from pypdf import PdfReader
-from services.skill_extractor import extract_skills
+from services.profile_analyzer import analyze_resume
 import tempfile
 import os
 
@@ -32,9 +32,10 @@ async def upload_resume(file: UploadFile = File(...)):
 
     # Delete temp file
     os.unlink(temp_file.name)
-    skills = extract_skills(text)
+    analysis = analyze_resume(text)
     return {
     "message": "Resume uploaded successfully",
-    "skills": skills,
-    "resume_text": text
+    "skills": analysis["skills"],
+    "resume_text": text,
+    "analysis": analysis
     }

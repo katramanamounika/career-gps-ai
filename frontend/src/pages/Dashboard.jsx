@@ -3,6 +3,7 @@ FaHome,
 FaUserCircle,
 FaFileAlt,
 FaChartBar,
+FaUpload,
 FaSignOutAlt
 }
 from "react-icons/fa";
@@ -93,6 +94,8 @@ user?.name
 ||
 "User";
 
+const hasResume = resumeHistory.length > 0;
+
 
 return(
 
@@ -170,6 +173,17 @@ Resume History
 </div>
 
 <div
+className="item"
+onClick={()=>navigate("/resume-upload")}
+>
+
+<FaUpload/>
+
+Resume Analysis
+
+</div>
+
+<div
 className={
 tab==="report"
 ?
@@ -208,7 +222,22 @@ localStorage.removeItem(
 `reportHistory_${email}`
 );
 
-window.location.reload();
+[
+"resumeSkills",
+"resumeText",
+"resumeProfileAnalysis",
+"uploadedResume",
+"selectedCareer",
+"missingSkills",
+"matchedSkills",
+"matchScore",
+"analysisReport",
+"currentResumeId"
+].forEach(key=>localStorage.removeItem(key));
+
+localStorage.removeItem(`uploadDate_${email}`);
+
+setTab("dashboard");
 
 }
 
@@ -259,11 +288,11 @@ Welcome Back,<br/>
 <div className="hero-left">
 
 <h2>
-🚀 Career Path
+🚀 Your Next Step
 </h2>
 
 <p>
-Choose your preferred career path
+{hasResume ? "Continue your guided career journey" : "Upload a resume to unlock your personalised career journey"}
 </p>
 
 </div>
@@ -271,15 +300,14 @@ Choose your preferred career path
 <button
 className="choose-btn"
 onClick={()=>
-navigate(
-"/career-selection"
-)
+navigate(hasResume ? "/career-studio" : "/resume-upload")
 }
 >
 
-Choose Career
+{hasResume ? "Continue Journey" : "Upload Resume"}
 
 </button>
+
 
 </div>
 
@@ -404,6 +432,10 @@ item.date
 
 </p>
 
+<p>📊 ATS Score: {item.atsScore || 0}%</p>
+
+{item.score !== undefined && <p>🎯 Career Match: {item.score}%</p>}
+
 </div>
 
 )
@@ -483,6 +515,8 @@ item.score
 %
 
 </h1>
+
+<p>ATS-style resume score: {item.atsScore || 0}%</p>
 
 <br/>
 

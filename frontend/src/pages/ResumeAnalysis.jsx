@@ -21,8 +21,11 @@ function ResumeAnalysis(){
 const navigate=useNavigate();
 
 const [result,setResult]=useState(null);
+const [profileAnalysis, setProfileAnalysis] = useState({});
 
 useEffect(()=>{
+
+setProfileAnalysis(JSON.parse(localStorage.getItem("resumeProfileAnalysis") || "{}"));
 
 const career=
 localStorage.getItem(
@@ -348,6 +351,13 @@ className="missing-chip"
 
 <br/>
 
+<div className="grid-2">
+<div className="glass-card"><h2>ATS-style resume check: {profileAnalysis.ats_score || 0}%</h2><p className="subtitle">Missing sections: {profileAnalysis.missing_sections?.join(", ") || "No common sections missing"}</p></div>
+<div className="glass-card"><h2>Specific improvements</h2>{profileAnalysis.suggestions?.slice(0,3).map(item => <p className="subtitle" key={item}>• {item}</p>)}</div>
+</div>
+
+<br/>
+
 <div className="glass-card">
 
 <h2>
@@ -381,6 +391,7 @@ navigate(
 Generate Learning Roadmap →
 
 </button>
+<button className="secondary-btn" style={{marginLeft:"12px"}} onClick={() => navigate("/career-studio")}>Open Career Studio</button>
 
 </div>
 

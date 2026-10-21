@@ -14,6 +14,18 @@ function LandingPage(){
 
 const navigate=
 useNavigate();
+const currentUser = JSON.parse(
+  localStorage.getItem("user") || "{}"
+);
+
+const currentEmail = currentUser.email || "guest";
+
+const hasResume =
+  JSON.parse(
+    localStorage.getItem(
+      `resumeHistory_${currentEmail}`
+    ) || "[]"
+  ).length > 0;
 
 const features=[
 
@@ -140,10 +152,8 @@ fontSize:
 "20px"
 }}
 
-onClick={()=>
-navigate(
-"/signup"
-)
+onClick={() =>
+  navigate(hasResume ? "/career-studio" : "/resume-upload")
 }
 >
 

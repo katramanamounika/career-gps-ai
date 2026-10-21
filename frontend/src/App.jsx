@@ -15,6 +15,7 @@ import Roadmap from "./pages/Roadmap";
 import ProjectRecommendations from "./pages/ProjectRecommendations";
 import CareerReadiness from "./pages/CareerReadiness";
 import ForgotPassword from "./pages/ForgotPassword";
+import CareerStudio from "./pages/CareerStudio";
 
 function App() {
 
@@ -93,6 +94,7 @@ function App() {
           path="/career-readiness"
           element={<CareerReadiness />}
         />
+        <Route path="/career-studio" element={<CareerStudio />} />
 
       </Routes>
 

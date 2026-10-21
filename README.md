@@ -1,255 +1,129 @@
-# Career GPS AI 🚀
+# Career GPS AI 2.0
 
-## 📌 Project Overview
+> An AI-assisted career guidance platform that turns a student resume into a clear, personalised career-preparation journey.
 
-Career GPS AI is an AI-powered career guidance platform designed to help students and job seekers make informed career decisions. The system analyzes a user's resume, identifies skills, compares them with career requirements, and generates personalized learning roadmaps, project recommendations, and career readiness reports.
+Career GPS AI 2.0 helps students understand what they know, choose a suitable technical career path, identify the skills they need next, build portfolio evidence and practise for interviews. The platform keeps each student's resume analysis and readiness information in their own account history.
 
-The platform provides a complete career development journey from career selection to resume analysis and skill improvement recommendations.
+## Key Features
 
----
+- Secure user sign-up, login and password recovery flow
+- PDF resume upload and skill extraction
+- Resume completeness analysis with recognised skills and profile information
+- Suitable career-path recommendations based on resume skills
+- Target-career selection with matched and missing skills
+- Role-specific ATS compatibility score instead of a fixed generic score
+- Job-description comparison with priority skills
+- Step-by-step learning roadmap for skill gaps
+- Portfolio project brief with build guidance and resume-bullet support
+- Interview practice with separate answer evaluation for every question
+- Career readiness report, resume history, report history and reset-history controls
 
-## 🎯 Problem Statement
+## Guided Student Flow
 
-Many students struggle to identify suitable career paths, understand industry-required skills, and evaluate their readiness for a chosen career.
+```text
+Sign up / Login
+      ↓
+Upload PDF Resume
+      ↓
+Extract Skills and Find Career Matches
+      ↓
+Choose a Target Career
+      ↓
+Check Role-Specific ATS Compatibility
+      ↓
+Compare a Job Description
+      ↓
+Follow Learning Roadmap
+      ↓
+Build Suggested Portfolio Project
+      ↓
+Practise Interview Questions
+      ↓
+Review Career Readiness Report
+```
 
-Career GPS AI addresses this challenge by:
+## Technology Stack
 
-* Providing career guidance and recommendations
-* Analyzing resumes using AI
-* Identifying skill gaps
-* Generating personalized learning roadmaps
-* Suggesting projects for skill development
-* Tracking career readiness progress
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, JavaScript, CSS3, React Router, Axios, Framer Motion |
+| Backend | Python, FastAPI, Uvicorn, Pydantic |
+| Resume Processing | pypdf and Python-based skill extraction services |
+| Data Storage | MongoDB with a local JSON development fallback |
+| Development Tools | VS Code, npm, pip, Git, GitHub, Postman |
 
----
+## Project Structure
 
-## ✨ Features
+```text
+Career-GPS-AI-2.0/
+├── frontend/          # React and Vite user interface
+├── backend/           # FastAPI routes, services and data layer
+├── docs/              # Project features, problem statement and user flow
+└── README.md
+```
 
-### 🔐 Authentication System
+## Run Locally
 
-* User Signup
-* User Login
-* Forgot Password
-* Email Validation
-* Password Validation
-* MongoDB User Storage
+### 1. Start the backend
 
-### 👤 Dashboard
+```powershell
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-* Personalized Welcome Screen
-* Profile Management
-* Resume History
-* Report History
-* Reset History
-* Logout Functionality
+The backend starts at `http://127.0.0.1:8000`.
 
-### 🎯 Career Guidance
+### 2. Start the frontend
 
-* Career Selection
-* Career Guidance Page
-* Career Overview
+Open a second terminal:
 
-### 📄 Resume Analysis
+```powershell
+cd frontend
+npm install
+npm run dev
+```
 
-* Resume Upload (PDF)
-* Resume Skill Extraction
-* Match Score Calculation
-* Matched Skills Detection
-* Missing Skills Identification
+Open the URL shown by Vite, normally `http://localhost:5173`.
 
-### 📚 Learning Support
+## Environment Variables
 
-* Personalized Learning Roadmap
-* Project Recommendations
-* Career Readiness Assessment
+Create `backend/.env` locally when MongoDB Atlas is available:
 
-### 📊 Data Management
+```env
+MONGO_URI=your_mongodb_connection_string
+```
 
-* MongoDB Database Integration
-* Local Storage Session Management
-* User-Specific Resume History
-* User-Specific Report History
+Never commit this file. If MongoDB is unavailable during local development, the application can use its local development data store.
 
----
+## Testing Checklist
 
-## 🏗️ System Architecture
+- Create a new account and log in
+- Upload a PDF resume
+- Confirm career matches appear after resume analysis
+- Select a target career and verify the ATS compatibility score
+- Compare a job description and review priority skills
+- Complete roadmap, portfolio-project and interview-practice steps
+- Confirm reports and resume history are associated with the signed-in user
+- Test reset history and log out
 
-User
-  │
-  ▼
-React Frontend
-  │
-  ▼
-FastAPI Backend
-  │
-  ▼
-MongoDB Database
+## Deployment
 
+The project is prepared for a standard React + FastAPI deployment:
 
----
+- Frontend: Vercel
+- Backend API: Render
+- Database: MongoDB Atlas
 
-## 🛠️ Technology Stack
+> Before production deployment, configure the frontend API URL and backend CORS origin with the final hosting URLs. Do not expose database credentials in GitHub.
 
-### Frontend
+## Author
 
-* React.js
-* React Router DOM
-* Axios
-* CSS3
-* React Icons
-
-### Backend
-
-* FastAPI
-* Python
-
-### Database
-
-* MongoDB
-
-### Tools Used
-
-* Visual Studio Code
-* Git
-* GitHub
-* Postman
-
----
-
-## 📂 Project Modules
-
-### 1. Authentication Module
-
-Handles:
-
-* Signup
-* Login
-* Password Recovery
-* User Validation
-
-### 2. Career Selection Module
-
-Allows users to:
-
-* Explore career options
-* Select desired career paths
-
-### 3. Career Guidance Module
-
-Provides:
-
-* Career Information
-* Required Skills
-* Career Growth Opportunities
-
-### 4. Resume Analysis Module
-
-Performs:
-
-* Resume Upload
-* Skill Extraction
-* Resume Evaluation
-* Skill Gap Analysis
-
-### 5. Learning Roadmap Module
-
-Generates:
-
-* Personalized Learning Paths
-* Skill Improvement Plans
-
-### 6. Project Recommendation Module
-
-Suggests:
-
-* Relevant Projects
-* Portfolio Building Ideas
-
-### 7. Career Readiness Module
-
-Calculates:
-
-* Readiness Score
-* Skill Readiness Assessment
-
-### 8. Dashboard Module
-
-Maintains:
-
-* User Profile
-* Resume History
-* Analysis Reports
+**Katramana Mounika**  
+Career GPS AI 2.0 — Internship / Academic Project
 
 ---
 
-## 🔄 Project Workflow
-
-
-Landing Page
-        │
-        ▼
-Signup / Login
-        │
-        ▼
-Dashboard
-        │
-        ▼
-Career Selection
-        │
-        ▼
-Career Guidance
-        │
-        ▼
-Career Overview
-        │
-        ▼
-Resume Upload
-        │
-        ▼
-Resume Analysis
-        │
-        ▼
-Learning Roadmap
-        │
-        ▼
-Project Recommendations
-        │
-        ▼
-Career Readiness
-        │
-        ▼
-Dashboard
-
-
----
-
-## 🎓 Learning Outcomes
-
-Through this project:
-
-* Developed a full-stack web application
-* Integrated MongoDB database
-* Implemented user authentication
-* Built REST APIs using FastAPI
-* Managed user-specific data
-* Developed resume analysis workflows
-* Applied AI-based career recommendation concepts
-
----
-
-## 🔮 Future Enhancements
-
-* Password Hashing using Bcrypt
-* JWT Authentication
-* Email OTP Verification
-* AI Chatbot Career Assistant
-* Cloud Deployment
-* Advanced Analytics Dashboard
-* Resume PDF Report Download
-* Real-Time Skill Tracking
-
----
-
-## 📄 License
-
-This project is developed for educational and academic purposes.
+If this project supports your learning or placement preparation, consider starring the repository.

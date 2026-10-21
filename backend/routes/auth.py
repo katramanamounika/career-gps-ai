@@ -1,7 +1,6 @@
 from fastapi import APIRouter
-from database.mongodb import db
 from models.user import User
-from database.mongodb import users_collection
+from database.user_store import find_user, create_user, update_password
 from pydantic import BaseModel
 import re
 
@@ -51,11 +50,7 @@ def signup(user: User):
             "Password must contain uppercase, lowercase, number and minimum 6 characters"
         }
 
-    existing_user = users_collection.find_one(
-        {
-            "email": user.email
-        }
-    )
+    existing_user = find_user(user.email)
 
     if existing_user:
         return {
@@ -63,9 +58,7 @@ def signup(user: User):
             "Email already registered"
         }
 
-    users_collection.insert_one(
-        user.dict()
-    )
+    create_user(user.dict())
 
     return {
         "message":
@@ -86,11 +79,7 @@ def login(data: LoginRequest):
             "Password required"
         }
 
-    user = users_collection.find_one(
-        {
-            "email": data.email
-        }
-    )
+    user = find_user(data.email)
 
     if not user:
         return {
@@ -126,23 +115,10 @@ async def forgot_password(data: dict):
     email = data["email"]
     new_password = data["new_password"]
 
-    user = db.users.find_one({
-        "email": email
-    })
-
-    if not user:
+    if not update_password(email, new_password):
         return {
             "message": "User not found"
         }
-
-    db.users.update_one(
-        {"email": email},
-        {
-            "$set": {
-                "password": new_password
-            }
-        }
-    )
 
     return {
         "message": "Password updated successfully"

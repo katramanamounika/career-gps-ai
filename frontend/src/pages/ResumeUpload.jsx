@@ -62,6 +62,12 @@ function ResumeUpload() {
 
     );
 
+    /* Start a fresh guided journey for this resume. */
+    localStorage.removeItem("selectedCareer");
+    localStorage.removeItem("missingSkills");
+    localStorage.removeItem("matchedSkills");
+    localStorage.removeItem("matchScore");
+
     /* SAVE SKILLS */
 
     localStorage.setItem(
@@ -86,24 +92,23 @@ function ResumeUpload() {
 
     )||[];
 
+    const resumeId = Date.now();
+    const uploadDate = new Date().toLocaleString();
+
     resumeHistory.unshift({
 
-    id:
-    Date.now(),
+    id: resumeId,
 
     name:
     file.name,
 
-    career:
-
-    localStorage.getItem(
-    "selectedCareer"
-    ),
+    career: null,
+    atsScore: response.data.analysis?.ats_score || 0,
+    skills: response.data.skills || [],
 
     date:
 
-    new Date()
-    .toLocaleString()
+    uploadDate
 
     });
 
@@ -131,13 +136,17 @@ function ResumeUpload() {
     response.data.resume_text
 
     );
+    localStorage.setItem(
+      `currentResumeId_${email}`,
+      String(resumeId)
+    );
+    localStorage.setItem("resumeProfileAnalysis", JSON.stringify(response.data.analysis || {}));
 
     localStorage.setItem(
 
     `uploadDate_${email}`,
 
-    new Date()
-    .toLocaleString()
+    uploadDate
 
     );
 
@@ -154,7 +163,7 @@ function ResumeUpload() {
     /* NEXT PAGE */
 
     navigate(
-    "/resume-analysis"
+    "/career-studio"
     );
 
     alert(

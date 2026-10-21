@@ -12,7 +12,10 @@ SKILLS = [
     "GitHub",
     "Machine Learning",
     "TensorFlow",
-    "FastAPI"
+    "FastAPI", "Pandas", "NumPy", "Scikit-learn", "Deep Learning", "Docker",
+    "AWS", "Azure", "Linux", "Kubernetes", "Power BI", "Excel", "Figma",
+    "Firebase", "Flutter", "Dart", "Networking", "Data Visualization", "Statistics",
+    "Node.js", "REST API", "CI/CD", "Cybersecurity", "Agile"
 ]
 
 def extract_skills(text):
@@ -21,7 +24,7 @@ def extract_skills(text):
 
     for skill in SKILLS:
 
-        if skill.lower() in text.lower():
+        if __import__("re").search(r"(?<![\w-])" + __import__("re").escape(skill) + r"(?![\w-])", text, __import__("re").IGNORECASE):
             found_skills.append(skill)
 
     return found_skills

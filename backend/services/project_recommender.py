@@ -184,3 +184,10 @@ PROJECTS = {
 
 def get_projects(career):
     return PROJECTS.get(career, [])
+
+
+def get_project_brief(career, level="Intermediate"):
+    choices = PROJECTS.get(career, [])
+    project = next((item for item in choices if item["level"].casefold() == level.casefold()), choices[0] if choices else {"title": "Career Portfolio Project", "level": level})
+    skills = {"AI/ML Engineer": ["Python", "Pandas", "Scikit-learn", "FastAPI"], "Data Analyst": ["Python", "SQL", "Excel", "Power BI"], "Backend Developer": ["Python", "FastAPI", "MongoDB", "SQL"]}.get(career, ["Git", "Documentation", "Testing", "Deployment"])
+    return {"project": project["title"], "difficulty": project["level"], "skills": skills, "dataset": "A public dataset or realistic sample data", "build_steps": ["Define the user problem and success metric", "Design and implement the core workflow", "Test edge cases and document decisions", "Deploy or record a short demo"], "resume_bullet": f"Built {project['title']} using {', '.join(skills[:3])}; documented the approach and measurable outcomes."}
