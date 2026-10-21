@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../api";
 
 import "../theme.css";
 
@@ -49,7 +50,7 @@ function ResumeUpload() {
     const response=
     await axios.post(
 
-    "http://127.0.0.1:8000/upload-resume",
+    `${API_URL}/upload-resume`,
 
     formData,
 

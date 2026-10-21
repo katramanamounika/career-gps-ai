@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "../api";
 import "../theme.css";
 
-const API = "http://127.0.0.1:8000";
 const steps = ["Career matches", "Choose target", "Job comparison", "Learning roadmap", "Portfolio project", "Interview practice"];
 
 function CareerStudio() {

@@ -1,4 +1,5 @@
 import "../theme.css";
+import API_URL from "../api";
 import {
 FaCheckCircle,
 FaTimesCircle,
@@ -40,7 +41,7 @@ localStorage.getItem(
 )||[];
 
 axios.post(
-"http://127.0.0.1:8000/career-match",
+`${API_URL}/career-match`,
 {
 career,
 skills

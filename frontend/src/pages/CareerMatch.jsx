@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../api";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -43,7 +44,7 @@ function CareerMatch() {
 
     axios
       .post(
-        "http://127.0.0.1:8000/career-match",
+        `${API_URL}/career-match`,
         {
           career,
           skills

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../theme.css";
 import axios from "axios";
+import API_URL from "../api";
 import { useNavigate } from "react-router-dom";
 
 function ProjectRecommendations() {
@@ -20,7 +21,7 @@ function ProjectRecommendations() {
 
     axios
       .post(
-        "http://127.0.0.1:8000/projects",
+        `${API_URL}/projects`,
         { career }
       )
       .then((response) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../theme.css";
 import axios from "axios";
+import API_URL from "../api";
 import { useNavigate } from "react-router-dom";
 
 function Roadmap() {
@@ -22,7 +23,7 @@ function Roadmap() {
 
     axios
       .post(
-        "http://127.0.0.1:8000/roadmap",
+        `${API_URL}/roadmap`,
         {
           missing_skills:
           missingSkills

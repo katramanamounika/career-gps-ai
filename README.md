@@ -117,7 +117,21 @@ The project is prepared for a standard React + FastAPI deployment:
 - Backend API: Render
 - Database: MongoDB Atlas
 
-> Before production deployment, configure the frontend API URL and backend CORS origin with the final hosting URLs. Do not expose database credentials in GitHub.
+### Deployment configuration
+
+The production frontend reads its backend address from `VITE_API_URL`. Configure this value in Vercel with the final Render URL, for example:
+
+```text
+VITE_API_URL=https://your-render-service.onrender.com
+```
+
+The backend reads allowed browser origins from `ALLOWED_ORIGINS`. Configure this value in Render with the final Vercel URL, for example:
+
+```text
+ALLOWED_ORIGINS=https://your-vercel-project.vercel.app
+```
+
+`render.yaml` is included to make the FastAPI service settings repeatable. Do not expose database credentials in GitHub.
 
 ## Author
 
